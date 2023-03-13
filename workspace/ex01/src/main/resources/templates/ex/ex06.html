@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EX06</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>사는 도시</th>
+    </tr>
+    <tr>
+        <td th:text="${userVO.name}"></td>
+        <td th:text="${userVO.age}"></td>
+        <td th:text="${userVO.gender}"></td>
+        <td th:text="${city}"></td>
+    </tr>
+</table>
+</body>
+</html>
