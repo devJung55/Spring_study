@@ -1,0 +1,23 @@
+server:
+  port: 10000
+
+### JDBC
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul
+#    username: root
+#    password: 1234
+
+### Hikari CP
+spring:
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul
+      username: root
+      password: 1234
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

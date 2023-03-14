@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table border="1" th:object="${productVO}">
+    <tr>
+        <th>상품명</th>
+        <th>상품가격</th>
+        <th>상품재고</th>
+        <th>브랜드</th>
+    </tr>
+    <tr>
+        <td th:text="*{productName}"></td>
+        <td th:text="*{productPrice}"></td>
+        <td th:text="*{productStock}"></td>
+        <td th:text="*{productBrand}"></td>
+    </tr>
+</table>
+</body>
+</html>

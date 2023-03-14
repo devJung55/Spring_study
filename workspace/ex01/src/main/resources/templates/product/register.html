@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input[type=text] {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/ex/register}" method="post" th:object="${productVO}" name="form">
+    <input type="text" th:field="*{productName}" placeholder="상품명">
+    <input type="text" th:field="*{productPrice}" placeholder="상품가격">
+    <input type="text" th:field="*{productStock}" placeholder="상품재고">
+    <input type="text" th:field="*{productBrand}" placeholder="브랜드">
+    <button type="button" id="register">등록</button>
+    <button type="button" id="update">수정</button>
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $("button").on("click", function(){
+        $(document.form).attr("action", $(this).attr("id") == 'register' ? "/ex/register" : "/ex/update");
+        $(document.form).submit();
+    });
+</script>
+</html>

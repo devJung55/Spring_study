@@ -2,11 +2,11 @@ package com.example.ex01.domain;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Data
 @Component
+@Data
 public class UserVO {
-    private String name;
-    private Integer age;
-    private String gender;
+    private String userId;
+    private String userPassword;
 }

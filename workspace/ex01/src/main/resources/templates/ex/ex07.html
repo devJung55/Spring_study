@@ -2,19 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>EX05</title>
+    <title>EX07</title>
 </head>
 <body>
 <table border="1">
     <tr>
         <th>이름</th>
         <th>나이</th>
-        <th>성별</th>
     </tr>
     <tr>
-        <td th:text="${memberVO.name}"></td>
-        <td th:text="${memberVO.age}"></td>
-        <td th:text="${memberVO.gender}"></td>
+        <td th:text="${param.name}"></td>
+        <td th:text="${param.age}"></td>
     </tr>
 </table>
 </body>
