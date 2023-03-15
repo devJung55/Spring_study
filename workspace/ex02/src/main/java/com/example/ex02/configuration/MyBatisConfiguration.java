@@ -38,6 +38,7 @@ public class MyBatisConfiguration {
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/config.xml"));
         try {
             SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBean.getObject();
+            sqlSessionFactory.getConfiguration().setMapUnderscoreToCamelCase(true);
             return sqlSessionFactory;
         } catch (Exception e) {
             e.printStackTrace();
