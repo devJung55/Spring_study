@@ -1,10 +1,9 @@
 package com.example.ex02.mapper;
 
-import com.example.ex02.domain.OrderDTO;
-import com.example.ex02.domain.OrderVO;
-import com.example.ex02.domain.ProductVO;
+import com.example.ex02.domain.dto.OrderDTO;
+import com.example.ex02.domain.vo.OrderVO;
+import com.example.ex02.domain.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.example.ex02.mapper;
 
-import com.example.ex02.domain.OrderDTO;
-import com.example.ex02.domain.OrderVO;
+import com.example.ex02.domain.dto.OrderDTO;
+import com.example.ex02.domain.vo.OrderVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

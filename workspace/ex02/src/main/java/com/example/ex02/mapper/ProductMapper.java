@@ -1,6 +1,6 @@
 package com.example.ex02.mapper;
 
-import com.example.ex02.domain.ProductVO;
+import com.example.ex02.domain.vo.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

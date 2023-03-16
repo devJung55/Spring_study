@@ -1,10 +1,11 @@
 package com.example.ex02.controller;
 
-import com.example.ex02.domain.OrderDTO;
-import com.example.ex02.domain.OrderVO;
-import com.example.ex02.domain.ProductVO;
+import com.example.ex02.domain.dto.OrderDTO;
+import com.example.ex02.domain.vo.OrderVO;
+import com.example.ex02.domain.vo.ProductVO;
 import com.example.ex02.mapper.OrderMapper;
 import com.example.ex02.mapper.ProductMapper;
+import com.example.ex02.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/order/*")
 @Slf4j
 public class OrderController {
-    private final ProductMapper productMapper;
-    private final OrderMapper orderMapper;
+    private OrderService orderService;
 
 //    주문
     @GetMapping("/")
@@ -33,28 +31,21 @@ public class OrderController {
     @PostMapping("/")
     @Transactional(rollbackFor = Exception.class)
     public RedirectView order(OrderVO orderVO) {
-        ProductVO productVO = productMapper.select(orderVO.getProductId());
-        productVO.setProductStock(productVO.getProductStock() - orderVO.getProductCount());
-        orderMapper.insert(orderVO);
-        productMapper.update(productVO);
+        orderService.order(orderVO);
         return new RedirectView("/order/list");
     }
 
 //    주문내역
     @GetMapping("list")
     public void showList(Model model) {
-        model.addAttribute("orders", orderMapper.selectAll());
+        model.addAttribute("orders", orderService.getList());
     }
 
 //    주문취소
     @PostMapping("cancel")
     @Transactional(rollbackFor = Exception.class)
     public RedirectView cancel(Long orderId) {
-        OrderDTO orderDTO = orderMapper.select(orderId);
-        ProductVO productVO = productMapper.select(orderDTO.getProductId());
-        productVO.setProductStock(productVO.getProductStock() + orderDTO.getProductCount());
-        orderMapper.delete(orderId);
-        productMapper.update(productVO);
+        orderService.cancel(orderId);
         return new RedirectView("/order/list");
     }
 }
