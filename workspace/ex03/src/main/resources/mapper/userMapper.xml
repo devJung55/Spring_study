@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ex03.mapper.UserMapper">
+    <select id="select" resultType="userVO">
+        select user_id, order_id, user_name from tbl_user
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectAll" resultType="userVO">
+        select user_id, order_id, user_name from tbl_user
+    </select>
+</mapper>

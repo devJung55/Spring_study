@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ex03.mapper.ProductMapper">
+    <insert id="insert">
+        insert into tbl_product
+        (product_name, product_price, product_stock)
+        values(#{productName}, #{productPrice}, #{productStock})
+    </insert>
+
+    <update id="update">
+        update tbl_product
+        set product_name=#{productName}, product_price=#{productPrice}, product_stock=#{productStock}
+        where product_id=#{productId}
+    </update>
+
+    <select id="select" resultType="productVO">
+        select product_id, product_name, product_price, product_stock
+        from tbl_product
+        where product_id = #{productId}
+    </select>
+
+    <select id="selectAll" resultType="productVO">
+        select product_id, product_name, product_price, product_stock
+        from tbl_product
+    </select>
+</mapper>
