@@ -5,6 +5,5 @@
         <typeAlias type="com.example.ex03.domain.vo.ProductVO" alias="productVO"/>
         <typeAlias type="com.example.ex03.domain.vo.OrderVO" alias="orderVO"/>
         <typeAlias type="com.example.ex03.domain.dto.OrderDTO" alias="orderDTO"/>
-        <typeAlias type="com.example.ex03.domain.vo.UserVO" alias="userVO"/>
     </typeAliases>
 </configuration>

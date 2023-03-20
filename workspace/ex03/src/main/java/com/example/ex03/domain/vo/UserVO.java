@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Data
 public class UserVO {
     private Long userId;
-    private Long orderId;
     private String userName;
+    private Integer userAge;
 }
