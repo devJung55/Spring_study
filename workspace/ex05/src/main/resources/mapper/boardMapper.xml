@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ex05.mapper.BoardMapper">
+    <insert id="insert">
+        insert into tbl_board(board_title, board_writer, board_content)
+        values(#{boardTitle}, #{boardWriter}, #{boardContent})
+
+        <selectKey keyProperty="boardId" order="AFTER" resultType="long">
+            select last_insert_id() from tbl_board limit 0, 1
+        </selectKey>
+    </insert>
+
+    <select id="select" resultType="boardVO">
+        select board_id, board_title, board_writer, board_content, board_register_date, board_update_date
+        from tbl_board where board_id = #{boardId}
+    </select>
+
+    <update id="update">
+        update tbl_board
+        set board_title = #{boardTitle}, board_content = #{boardContent}, board_update_date = current_timestamp()
+        where board_id = #{boardId}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_board where board_id = #{boardId}
+    </delete>
+
+    <select id="selectAll" resultType="boardVO">
+        select board_id, board_title, board_writer, board_content, board_register_date, board_update_date
+        from tbl_board
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ex05.mapper.FileMapper">
+    <insert id="insert">
+        insert into tbl_file(file_original_name, file_uuid, file_path, file_size, file_type, board_id)
+        values(#{fileOriginalName}, #{fileUuid}, #{filePath}, #{fileSize}, #{fileType}, #{boardId})
+    </insert>
+
+    <select id="selectAll" resultType="fileVO">
+        select file_id, file_original_name, file_uuid, file_path, file_size, file_type, board_id
+        from tbl_file where board_id = #{boardId}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_file where board_id = #{boardId}
+    </delete>
+
+</mapper>

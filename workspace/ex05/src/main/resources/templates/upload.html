@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>파일 업로드</title>
+</head>
+<body>
+    <input type="file" name="file" multiple>
+<!--    <input type="file" name="file">-->
+<!--    <input type="file" name="file">-->
+    <button type="button" id="done-file">전송</button>
+    <ul id="thumbnail"></ul>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    globalThis.uuids;
+    FileList.prototype.forEach = Array.prototype.forEach;
+
+    $("input[name='file']").on("change", function(){
+        const $files = $("input[name=file]")[0].files;
+        let formData = new FormData();
+        let file
+        $files.forEach(file => {
+            formData.append("file", file)
+        });
+        $.ajax({
+            url: "/files/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(uuids) {
+                globalThis.uuids = uuids;
+                $files.forEach((file, i) => {
+                    if(file.type.startsWith("image")){
+                        $("#thumbnail").append(`<li><a href="/files/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/files/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></a></li>`);
+                    }else{
+                        $("#thumbnail").append(`<li><a href="/files/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/attach.png" width="100"></a></li>`);
+                    }
+                })
+            }
+        });
+    });
+
+    $("#done-file").on("click", function(){
+        const $files = $("input[name=file]")[0].files;
+        let files = new Array();
+
+        $files.forEach((file, i) => {
+            let fileVO = new Object();
+            fileVO.fileOriginalName = file.name;
+            fileVO.fileUuid = globalThis.uuids[i];
+            fileVO.filePath = toStringByFormatting(new Date());
+            fileVO.fileSize = file.size;
+            fileVO.fileType = file.type.startsWith("image");
+            fileVO.boardId = 5;
+            files.push(fileVO);
+        });
+
+        $.ajax({
+            url: "/files/save",
+            type: "post",
+            data: JSON.stringify(files),
+            contentType: "application/json; charset=utf-8",
+            success: function(){
+                alert("전송 성공");
+            }
+        });
+    });
+/*****************************************************/
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function toStringByFormatting(source, delimiter = '/') {
+        const year = source.getFullYear();
+        const month = leftPad(source.getMonth() + 1);
+        const day = leftPad(source.getDate());
+
+        return [year, month, day].join(delimiter);
+    }
+    /*****************************************************/
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
