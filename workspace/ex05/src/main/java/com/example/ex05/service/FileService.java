@@ -32,6 +32,11 @@ public class FileService {
     public void remove(Long boardId){
         fileDAO.delete(boardId);
     }
+
+//    전일 등록된 파일 조회
+    public List<FileVO> getListFromYesterday(){
+        return fileDAO.findByFilePath();
+    }
 }
 
 

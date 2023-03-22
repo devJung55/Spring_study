@@ -26,6 +26,11 @@ public class FileDAO {
     public void delete(Long boardId){
         fileMapper.delete(boardId);
     }
+
+//    전일 등록된 파일 조회
+    public List<FileVO> findByFilePath(){
+        return fileMapper.selectYesterday();
+    }
 }
 
 

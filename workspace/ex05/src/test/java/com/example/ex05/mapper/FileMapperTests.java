@@ -38,6 +38,11 @@ public class FileMapperTests {
         fileMapper.delete(5L);
         assertThat(fileMapper.selectAll(5L).size()).isEqualTo(0);
     }
+
+    @Test
+    public void selectYesterdayTest(){
+        fileMapper.selectYesterday().stream().map(FileVO::getFileOriginalName).forEach(log::info);
+    }
 }
 
 

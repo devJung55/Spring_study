@@ -15,4 +15,8 @@
         delete from tbl_file where board_id = #{boardId}
     </delete>
 
+    <select id="selectYesterday" resultType="fileVO">
+        select file_id, file_original_name, file_uuid, file_path, file_size, file_type, board_id
+        from tbl_file where file_path = date_format(current_timestamp() - interval 1 day, '%Y/%m/%d')
+    </select>
 </mapper>
