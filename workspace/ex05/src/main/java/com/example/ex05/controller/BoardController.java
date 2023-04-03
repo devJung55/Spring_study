@@ -16,7 +16,7 @@ public class BoardController {
 //    게시글 조회
     @GetMapping("read")
     public void getBoard(Long boardId, Model model){
-        model.addAttribute("board", boardService.getBoard(boardId));
+           model.addAttribute("board", boardService.getBoard(boardId));
     }
 
     @GetMapping("write")

@@ -68,8 +68,9 @@
                     <input type="hidden" name="files[${i}].fileSize" value="${file.size}">
                     <input type="hidden" name="files[${i}].fileType" value="${file.type.startsWith("image")}">
                     `
-                    i++;
+                    globalThis.i++;
                 });
+                globalThis.i = 0;
                 $("form[name='write-form']").append(text);
             }
         });
